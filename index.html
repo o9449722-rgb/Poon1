@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ยินดีต้อนรับสู่เว็บไซต์</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* หน้าแรกที่ให้เหยื่อกด */
+        #click-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #111;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            color: white;
+            cursor: pointer;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            background-color: #ff3333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+        }
+        /* หน้าจอจัมพ์สแกร์ (ซ่อนไว้ตอนแรก) */
+        #jumpscare-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
+            z-index: 9999;
+        }
+        #scare-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* ขยายภาพเต็มจอ */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- หน้ากดเริ่มเกม/เข้าเว็บเพื่อหลอกล่อ -->
+    <div id="click-screen" onclick="startTimer()">
+        <h2>⚠️ เว็บไซต์นี้ต้องการสิทธิ์การเข้าถึงเสียง</h2>
+        <p>กรุณากดปุ่มด้านล่างเพื่อดำเนินการต่อ</p>
+        <button class="btn">เข้าสู่เว็บไซต์</button>
+    </div>
+
+    <!-- โซนจัมพ์สแกร์ -->
+    <div id="jumpscare-container">
+        <!-- ใส่ลิงก์รูปผีของคุณที่นี่ -->
+        <img id="scare-image" src="ghost.jpg" alt="BOO!">
+    </div>
+
+    <!-- ใส่ลิงก์เสียงกรีดร้องของคุณที่นี่ -->
+    <audio id="scream-audio" src="scream.mp3" preload="auto"></audio>
+
+    <script>
+        function startTimer() {
+            // ซ่อนหน้าแรกทันทีเมื่อกด
+            document.getElementById('click-screen').style.display = 'none';
+
+            // ตั้งเวลาถอยหลัง 3 วินาที (3000 มิลลิวินาที) ก่อนผีโผล่
+            // หากต้องการให้โผล่ทันทีที่กด ให้เปลี่ยนเลข 3000 เป็น 0 ครับ
+            setTimeout(function() {
+                triggerJumpscare();
+            }, 3000); 
+        }
+
+        function triggerJumpscare() {
+            const container = document.getElementById('jumpscare-container');
+            const audio = document.getElementById('scream-audio');
+
+            // แสดงภาพเต็มจอ
+            container.style.display = 'block';
+            
+            // เล่นเสียงกรีดร้อง
+            audio.play().catch(function(error) {
+                console.log("บราวเซอร์บล็อกการเล่นเสียงอัตโนมัติ:", error);
+            });
+        }
+    </script>
+</body>
+</html>
