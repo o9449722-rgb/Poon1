@@ -76,11 +76,11 @@
 
     <!-- โซนจัมพ์สแกร์ -->
     <div id="jumpscare-container">
-        <!-- ใส่ลิงก์รูปผีของคุณที่นี่ -->
-        <img id="scare-image" src="ghost.jpg" alt="BOO!">
+        <!-- ใส่ลิงก์รูปผีแม่ชีให้เรียบร้อยแล้ว -->
+        <img id="scare-image" src="https://unsplash.com" alt="BOO!">
     </div>
 
-    <!-- ใส่ลิงก์เสียงกรีดร้องของคุณที่นี่ -->
+    <!-- ใส่ลิงก์เสียงกรีดร้อง (ต้องมีไฟล์ scream.mp3 อยู่ในโฟลเดอร์เดียวกัน) -->
     <audio id="scream-audio" src="scream.mp3" preload="auto"></audio>
 
     <script>
@@ -88,8 +88,7 @@
             // ซ่อนหน้าแรกทันทีเมื่อกด
             document.getElementById('click-screen').style.display = 'none';
 
-            // ตั้งเวลาถอยหลัง 3 วินาที (3000 มิลลิวินาที) ก่อนผีโผล่
-            // หากต้องการให้โผล่ทันทีที่กด ให้เปลี่ยนเลข 3000 เป็น 0 ครับ
+            // ตั้งเวลาถอยหลัง 3 วินาที ก่อนผีโผล่
             setTimeout(function() {
                 triggerJumpscare();
             }, 3000); 
@@ -99,7 +98,7 @@
             const container = document.getElementById('jumpscare-container');
             const audio = document.getElementById('scream-audio');
 
-            // แสดงภาพเต็มจอ
+            // แสดงภาพผีแม่ชีเต็มจอ
             container.style.display = 'block';
             
             // เล่นเสียงกรีดร้อง
